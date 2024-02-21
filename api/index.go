@@ -15,7 +15,7 @@ func init() {
 
 	router := httprouter.New()
 
-	router.GET("/",func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	router.GET("/api",func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 
 		token, _ := r.Cookie("token")
 
