@@ -30,7 +30,7 @@ func init() {
 	})
 
 	c := cors.New(cors.Options{
-    AllowedOrigins: []string{"http://localhost:5173"},
+    AllowedOrigins: []string{"http://localhost:5173","https://express-cookie-experiment.vercel.app"},
     AllowCredentials: true,
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
 		
