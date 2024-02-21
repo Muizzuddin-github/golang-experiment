@@ -1,8 +1,8 @@
 // package main
+
 package handler
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -17,11 +17,16 @@ func init() {
 
 	router.GET("/api",func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 
-		token, _ := r.Cookie("token")
+		token, err := r.Cookie("token")
+		if err == http.ErrNoCookie{
+			w.WriteHeader(http.StatusOK)
+		  w.Write([]byte("golang okeh"))
+		  return
+		}
 
-		fmt.Println(token)
+
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("golang okeh " + token.Name + "="+ token.Value))
+		w.Write([]byte("golang okeh " + token.Name + "=" + token.Value))
 	})
 
 	c := cors.New(cors.Options{
